@@ -3,9 +3,12 @@
 #' This function gets the ratings for various ramen
 #'
 #' @return A data.frame including 3180 observations and 6 variables.
-#' @examplea
+#'
+#' @examples
 #' ramen_ratings()
-
+#'
+#' @importFrom graphics stars
+#'
 #' @export
 
 ramen_ratings <- function(){
@@ -13,7 +16,7 @@ ramen_ratings <- function(){
   `%>%` <- magrittr::`%>%`
 url <- 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-04/ramen_ratings.csv'
 
-ramen_rating <- readr::read_csv(url) %>%
+readr::read_csv(url) %>%
   tidyr::drop_na(stars) %>%
   dplyr::mutate(country = ifelse(country == "Hong Kong", "China", country),
          country = ifelse(country == "Russia", "Russian Federation", country),
