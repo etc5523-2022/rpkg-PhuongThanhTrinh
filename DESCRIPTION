@@ -1,9 +1,9 @@
 Package: ramenreview
-Title: What the Package Does (One Line, Title Case)
+Title: An exploration on the quality of ramen all over the world
 Version: 0.0.0.9000
 Authors@R: 
     person("Phuong", "Trinh", , "ptri0004@student.monash.edu", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: It provides information regarding different ramen reviews and how different factors such as styles can change customers' ratings on a particular ramen brand.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: es
@@ -13,6 +13,7 @@ Depends:
     R (>= 2.10)
 LazyData: true
 Imports: 
+    shiny,
     dplyr,
     readr,
     tidyr,
