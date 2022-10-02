@@ -7,7 +7,7 @@
 ramen_ratings()
 }
 \value{
-A data.frame including 3180 observations and 6 variables.
+A data.frame including 2805 observations and 7 variables.
 }
 \description{
 This function gets the ratings for various ramen

@@ -17,5 +17,19 @@ ramen_rating <- read_csv(url) %>%
          country = ifelse(country == "UK", "United Kingdom", country),
          country = ifelse(country == "Phlippines", "Philippines", country))
 
+asia <- c("Russia", "Thailand", "Japan", "Taiwan", "South Korea", "Hong Kong", "Malaysia", "China", "Philippines", "Vietnam", "Bangladesh", "Singapore", "Indonesia", "India", "Pakistan", "Nepal", "Myanmar", "Cambodia", "Dubai")
+europe <- c("France", "Ukraine", "Netherlands", "Italy", "Poland", "Germany", "Hungary", "United Kingdom", "Finland", "Sweden", "Estonia")
+oceania <- c("Australia", "New Zealand", "Fiji")
+africa <- c("Nigeria", "Ghana")
+america <- c("Canada", "United States", "Brazil", "Mexico", "Colombia")
+
+ramen_rating <- ramen_rating %>%
+  mutate(continent = case_when(
+    country %in% asia ~ "Asia",
+    country %in% europe ~ "Europe",
+    country %in% oceania ~ "Oceania",
+    country %in% america ~ "America",
+    country %in% africa ~ "Africa")) %>%
+  filter(continent != "NA")
 
 usethis::use_data(ramen_rating, overwrite = TRUE)
