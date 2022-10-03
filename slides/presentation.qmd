@@ -1,0 +1,186 @@
+---
+title: "Ramen World"
+subtitle: "Exploring the ramen varieties around the world"
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+    theme: solarized
+editor: visual
+author: "By Phuong Thanh Trinh"
+---
+
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(DT)
+library(plotly)
+library(kableExtra)
+```
+
+```{r, message = FALSE, warning=FALSE}
+ramen_ratings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-04/ramen_ratings.csv")
+```
+
+## Aim of the package
+
+::: {.incremental}
+
+* Provides an overview about the diversity of ramen world
+
+* Understands the quality of different ramen brands as well as the popular packaging styles
+
+* Helps ramen enthusiasts to decide which ramen is worth to try and which brand they might want to avoid
+:::
+
+## Source 
+:::: {.columns}
+
+::: {.column width="50%"}
+The data used in this package is the `ramen_rating.csv` data set, originated from the [Ramen Rater](https://www.theramenrater.com/resources-2/the-list/). 
+
+:::
+
+::: {.column width="50%"}
+Each record in the data set represents a single ramen review. The dataset contains the following 6 variables: 
+```{r}
+tibble(
+  "Variable" = c("brand", "variety", "style", "country", "review_number", 
+                 "stars"),
+  "Class" = c("character", "character", "character", "character", "numeric", 
+              "numeric"),
+  "Description" = c("Brand of the ramen",
+                    "The ramen variety, e.g., a flavor, style, ingredient", 
+                    "Style of container (cup, pack, tray)", 
+                    "Origin country of the ramen brand",
+                    "Ramen review number",
+                    "Rating of the ramen ranging from 0-5 (5 is best, 0 is worst)")
+) %>%
+  kable() %>%
+  kable_styling(full_width = F, font_size = 14,
+                bootstrap_options = c("striped", "condensed", "bordered"))
+```
+:::
+
+::::
+
+
+## Demonstration of the package
+
+### Functions
+::: {.incremental}
+
+* `ramen_ratings()`:allows users to get the **ramen_rating** data set
+
+* `five_sum()`: calculates the total number of ramen varieties available in each ramen brand
+
+* `good_bad_ramen()`:generates plot showing the percentage of good and bad ramen based on countries
+
+* `run_app()`: launches a Shiny App for the dataset
+:::
+
+## Demonstration of the package
+### Get the package
+
+```{r, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("etc5523-2022/rpkg-PhuongThanhTrinh")
+```
+
+```{r}
+# load the library
+library(ramenreview)
+```
+
+## Demonstration of the package {auto-animate="true"}
+### `ramen_ratings()` function 
+
+*The dataset has been slightly modified to fit with the purpose of this package, shown as the code below:*
+
+```{r}
+ramen_ratings <- ramen_ratings %>%
+  drop_na(stars) %>%
+  
+  # recode countries' names
+  mutate(country = ifelse(country == "Hong Kong", "China", country),
+         country = ifelse(country == "Russia", "Russian Federation", country),
+         country = ifelse(country == "Holland", "Netherlands", country),
+         country = ifelse(country == "Dubai", "United Arab Emirates", country),
+         country = ifelse(country == "South Korea", "Republic of Korea", country),
+         country = ifelse(country == "Singapore", "Malaysia", country),
+         country = ifelse(country == "Sarawak", "Malaysia", country),
+         country = ifelse(country == "USA", "United States", country),
+         country = ifelse(country == "UK", "United Kingdom", country),
+         country = ifelse(country == "Phlippines", "Philippines", country))
+```
+
+
+```{r}
+# assign countries to corresponding continents
+asia <- c("Russia", "Thailand", "Japan", "Taiwan", "South Korea", "Hong Kong", "Malaysia", "China", "Philippines", "Vietnam", "Bangladesh", "Singapore", "Indonesia", "India", "Pakistan", "Nepal", "Myanmar", "Cambodia", "Dubai")
+europe <- c("France", "Ukraine", "Netherlands", "Italy", "Poland", "Germany", "Hungary", "United Kingdom", "Finland", "Sweden", "Estonia")
+oceania <- c("Australia", "New Zealand", "Fiji")
+africa <- c("Nigeria", "Ghana")
+america <- c("Canada", "United States", "Brazil", "Mexico", "Colombia")
+
+  # create new variable named "continent"
+ramen_ratings <- ramen_ratings %>%
+  mutate(continent = case_when(
+    country %in% asia ~ "Asia",
+    country %in% europe ~ "Europe",
+    country %in% oceania ~ "Oceania",
+    country %in% america ~ "America",
+    country %in% africa ~ "Africa")) 
+```
+
+
+```{r}
+ramen_ratings()
+```
+## Demonstration of the package {auto-animate="true"}
+### `five_sum()` function 
+
+*Are you curious how many varieties which brands have?*
+
+To help answer this question, simply add on the ramen name you want to explore, `five_sum()` can provide you with the answer immediately
+
+```{r}
+five_sum(brand = "Nissin")
+```
+
+## Demonstration of the package {auto-animate="true"}
+### `good_bad_ramen()` function 
+
+*Now that we know number of varieties in each brand, do you also want to know how much percentages a ramen is considered good and bad in the data?*
+
+The histogram below shows the distribution of ramen brands being rated from a 5-score scale. 
+
+```{r, message=FALSE, warning=FALSE}
+#| label: fig-ramen
+#| fig-cap: "Distribution of ratings across brands"
+ggplot(ramen_ratings, aes(x = stars)) +
+  geom_histogram(color = "purple", fill = "purple", alpha = 0.2, bins = 20, aes(y = stat(density))) +
+  geom_density(color = "purple", fill = "purple", alpha = 0.2) +
+  labs(x = "Rating", y = "Number of ramen brands") 
+```
+
+It can be seen that in @fig-ramen, the distribution of ratings is quite left-skewed. This means we are more likely to get better ramen than bad ones. On average, the rating score is `3.7`. Therefore, ramen brands that are rated lower than `3` stars seem to have worse quality compared to the others. Let's find out the rate among different countries with function `good_bad_ramen()`: 
+
+```{r}
+good_bad_ramen(country = "Australia")
+```
+
+
+## Demonstration of the package {auto-animate="true"}
+### `run_app()` function 
+
+A Shiny app has been provided to help users gather information regarding different ramen reviews and how different factors such as styles can change customers' ratings on a particular ramen brand.
+
+```{r, eval= FALSE}
+run_app()
+```
+
+
+## Thank you for listening
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Thank-new-yellow-transparent.svg/600px-Thank-new-yellow-transparent.svg.png?20200609150708)

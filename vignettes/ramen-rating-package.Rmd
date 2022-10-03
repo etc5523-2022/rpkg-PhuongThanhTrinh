@@ -54,7 +54,7 @@ This dataset provides more than 3,000 reviews on over 400 ramen brands on select
 
 There are three functions included in this package:
 
-* `ramen_rating()` function allows users to get the `ramen_rating.csv` data set. The dataset has been slightly modified to fit with the exploratory purpose of the package
+* `ramen_ratings()` function allows users to get the `ramen_rating.csv` data set. The dataset has been slightly modified to fit with the exploratory purpose of the package
 
 * `five_sum()` function calculates the total number of ramen varieties available in each of the ramen brands
 
