@@ -1,0 +1,8 @@
+^yourpkg\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^LICENSE\.md$
+^ramen-rating-package\.Rproj$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
