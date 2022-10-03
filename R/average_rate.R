@@ -4,32 +4,49 @@
 #'
 #' @return A boxplot contains 5 summary statistics of different ramen.
 #'
-#'@param continent The continent in which a country is located in.
+#'@param country The country in which a ramen bran comes from.
+#'
+#'@importFrom graphics pie
 #'
 #' @examples
-#'boxplot("Asia")
+#' good_bad_ramen("Australia")
 #'
 #'
 #' @export
 
-boxplot <- function(continent = NULL) {
+good_bad_ramen <- function(country) {
+  `%>%` <- magrittr::`%>%`
 
-   `%>%` <- magrittr::`%>%`
-continent <- unique(ramen_rating$continent)
+  plot <- ramen_rating %>%
+    dplyr::mutate(Type = dplyr::case_when(
+      stars < 3 ~ "Bad",
+      stars >= 3 ~ "Good")) %>%
+    dplyr::group_by(country, Type) %>%
+    dplyr::count(country, Type) %>%
+    dplyr::group_by(country) %>%
+    dplyr::mutate(total = sum(n)) %>%
+    dplyr::mutate(percentage = n/total * 100)
 
-average <- ramen_rating %>%
-  dplyr::group_by(country)
+  countries <- unique(plot$country)
 
-out <- ggplot2::ggplot(average, ggplot2::aes(x = country, y = stars, fill = country)) +
-          ggplot2::geom_boxplot(color = "black",
-                       size = 1,
-                       width = 0.3) +
-          ggplot2::theme(
-            legend.title = ggplot2::element_blank(),
-            axis.title.x = ggplot2::element_blank(),
-            axis.title.y = ggplot2::element_blank()) +
-          ggplot2::ylab("Rating") +
-          ggplot2::coord_flip()
+  choices <- sample(countries, 1)
+
+  worst <- plot %>%
+    dplyr::filter(country == choices)
+
+  slices <- worst$percentage
+  lbls <- worst$Type
+  pct <- round(slices)
+  lbls <- paste(lbls, pct)
+  lbls <- paste(lbls,"%",sep="")
+
+  out <- pie(slices,labels = lbls, col= c("#eec6a7", "#9f1618"),
+             main="Percentage of good and bad ramen")
+
+ifelse((country == worst$country),
+  print(out),
+  print("There is no record on this country."))
 }
+
 
 
