@@ -3,7 +3,7 @@
     "path": "~/Desktop/ETC5523/R-package/rpkg-PhuongThanhTrinh/.gitignore",
     "project_path": ".gitignore",
     "type": "gitignore",
-    "hash": "377250371",
+    "hash": "2227212639",
     "contents": "",
     "dirty": false,
     "created": 1664806106251.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "0,0",
+        "cursorPosition": "0,8",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1664806137,
+    "lastKnownWriteTime": 1664806236,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1664806137132,
+    "last_content_update": 1664806236909,
     "read_only": false,
     "read_only_alternatives": []
 }
