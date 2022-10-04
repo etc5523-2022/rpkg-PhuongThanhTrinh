@@ -1,5 +1,5 @@
 ---
-title: "Ramen World"
+title: "ramenreview"
 subtitle: "Exploring the ramen varieties around the world"
 format:
   revealjs:
@@ -145,7 +145,7 @@ ramen_ratings <- ramen_ratings %>%
 
 ## `get_ramen_rating()` function 
 
-* This function will return a tibble including 3180 rows and 6 columns, as shown below:
+* This function will return a tibble including 3180 rows and 7 columns, as shown below:
 
 ``` {r}
 get_ramen_rating()
