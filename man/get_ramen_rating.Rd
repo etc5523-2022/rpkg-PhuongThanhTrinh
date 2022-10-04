@@ -2,8 +2,7 @@
 % Please edit documentation in R/ramen_review.R
 \name{get_ramen_rating}
 \alias{get_ramen_rating}
-\title{@title
-Get ramen_rating dataset}
+\title{Get ramen_rating dataset}
 \usage{
 get_ramen_rating()
 }
@@ -11,5 +10,5 @@ get_ramen_rating()
 A data frame including 3180 rows and 7 columns.
 }
 \description{
-This function gets the ramen_rating dataset
+This function gets the ramen rating dataset
 }

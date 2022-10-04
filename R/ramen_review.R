@@ -1,8 +1,7 @@
-#'  @title
 #' Get ramen_rating dataset
 #'
 #' @description
-#' This function gets the ramen_rating dataset
+#' This function gets the ramen rating dataset
 #'
 #' @return
 #' A data frame including 3180 rows and 7 columns.
@@ -40,8 +39,33 @@ readr::read_csv(url) %>%
     country %in% america ~ "America",
     country %in% africa ~ "Africa"))
 }
-#'@usage
-#'Run the below code:
-#'get_ramen_rating()
 #'
+#' @title
+#' Get ramen_rating dataset in tabular format
+#'
+#' @description
+#' This function provides 4 summary statistics for ramen rating dataset
+#'
+#' @return
+#' A tidy table comprises of 38 rows and 5 columns.
+#'
+#' @export
+
+get_table <- function() {
+  `%>%` <- magrittr::`%>%`
+  table <- ramen_rating %>%
+    dplyr::rename(Country = country) %>%
+    dplyr::group_by(Country) %>%
+    dplyr::summarise(Average = mean(stars),
+              Min = min(stars),
+              Median = median(stars),
+              Max = max(stars)) %>%
+    dplyr::mutate_if(is.numeric, round, digits = 1)
+  table %>%
+    DT::datatable(.,
+      options = list(paging = TRUE),
+      colnames = c("Country", "Average", "Min", "Median", "Max"))
+
+}
+
 

@@ -1,41 +1,41 @@
-#' Get five summary numbers for ramen in different countries
+#' @title
+#' Get good and bad ramen from each country
 #'
-#' This function gets the average ratings for ramen based on countries.
+#' @description
+#' This function generates plots illustrating the proportion of good and bad ramen for each nation.
 #'
-#' @return A boxplot contains 5 summary statistics of different ramen.
+#' @return
+#' A pie chart showing the corresponding percentage of ramen rated as either good or bad.
 #'
-#'@param country The country in which a ramen bran comes from.
+#' @param names The country name in which ramen comes from.
 #'
-#'@importFrom graphics pie
-#'
-#' @examples
-#' good_bad_ramen("Australia")
-#'
+#' @importFrom graphics pie
 #'
 #' @export
 
-good_bad_ramen <- function(country) {
+get_pct <- function(names) {
   `%>%` <- magrittr::`%>%`
 
+  type <- country <- n <- total <- percentage <- NULL
+
+
+
   plot <- ramen_rating %>%
-    dplyr::mutate(Type = dplyr::case_when(
+    dplyr::filter(stars != "NA") %>%
+    dplyr::mutate(type = dplyr::case_when(
       stars < 3 ~ "Bad",
       stars >= 3 ~ "Good")) %>%
-    dplyr::group_by(country, Type) %>%
-    dplyr::count(country, Type) %>%
+    dplyr::group_by(country, type) %>%
+    dplyr::count(country, type) %>%
     dplyr::group_by(country) %>%
     dplyr::mutate(total = sum(n)) %>%
-    dplyr::mutate(percentage = n/total * 100)
+    dplyr::mutate(percentage = n/total * 100) %>%
+    dplyr::filter(country == names)
 
-  countries <- unique(plot$country)
+  choices <- sample(unique(plot$country), 1)
 
-  choices <- sample(countries, 1)
-
-  worst <- plot %>%
-    dplyr::filter(country == choices)
-
-  slices <- worst$percentage
-  lbls <- worst$Type
+  slices <- plot$percentage
+  lbls <- plot$type
   pct <- round(slices)
   lbls <- paste(lbls, pct)
   lbls <- paste(lbls,"%",sep="")
@@ -43,10 +43,15 @@ good_bad_ramen <- function(country) {
   out <- pie(slices,labels = lbls, col= c("#eec6a7", "#9f1618"),
              main="Percentage of good and bad ramen")
 
-ifelse((country == worst$country),
-  print(out),
-  print("There is no record on this country."))
+if(names == choices) {
+  print(out)
+} else {
+  print("There is no record on this country")
 }
 
+}
+#' @examples
+#' get_pct(names = "Australia")
+#' get_pct(names = "Japan")
 
 
