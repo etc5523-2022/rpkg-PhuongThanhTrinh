@@ -41,11 +41,9 @@ get_pct <- function(names) {
 
 if(names == choices) {
   print(out)
-} else {
-  print("There is no record on this country")
+}
 }
 
-}
 #' @examples
 #' get_pct(names = "Australia")
 #' get_pct(names = "Japan")
@@ -53,7 +51,7 @@ if(names == choices) {
 #' @title Get the average ratings
 #'
 #' @description
-#' This function produces graphs showing averating ratings on each country, across continents
+#' This function produces graphs showing averate ratings on each country, across continents
 #'
 #' @return
 #' A interactive boxplot shows the five summary values for each country.

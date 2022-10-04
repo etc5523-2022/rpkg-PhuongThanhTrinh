@@ -1,32 +1,57 @@
-#' Get five summary numbers for different ramen styles
+#' Get highest varieties
 #'
-#' This function gets the five number summary for selected ramen styles.
+#' @description
+#' This function gets the highest varietie.
 #'
-#' @return A data table contains 5 summary statistics.
+#' @return A sentence describes the number of variations.
 #'
-#'@param brand The ramen brand
-#'
-#' @importFrom stats fivenum na.omit setNames
+#'@param styles The style of ramen containers
 #'
 #'
 #' @export
 
-five_sum <- function(brand = NULL){
+get_best_style <- function(styles){
 
   `%>%` <- magrittr::`%>%`
 
-  brands <- ramen_rating %>%
-    dplyr::group_by(brand) %>%
-    dplyr::count(brand)
+  ramen <- ramen_rating %>%
+    tidyr::drop_na(stars) %>%
+    dplyr::group_by(style) %>%
+    dplyr::count(style) %>%
+    dplyr::filter(style == styles)
 
-  name <- unique(brands$brand)
+  choice <- sample(unique(ramen$style), 1)
 
-  choice <- sample(name, 1)
+if(styles == choice){
+  paste0("There are", " ", ramen$n, " ", "variations available in this style!")
+}
+}
 
-  freq <- brands %>%
-    dplyr::filter(brand == choice)
+#' Rank highest average rate
+#'
+#' @description
+#' This function gets the ranking of average rate for each ramen style.
+#'
+#' @return A sentence ranks the average rate .
+#'
+#'@param styles The style of ramen containers
+#'
+#' @export
 
-ifelse(is.null(freq$brand),
-   paste0("Could not find brand name"),
-   paste0("This brand has", " ", freq$n, " ", "number of varieties!"))
+get_rank <- function(styles){
+
+  `%>%` <- magrittr::`%>%`
+
+  ranking <- ramen_rating %>%
+    tidyr::drop_na(stars) %>%
+    dplyr::group_by(style) %>%
+    dplyr::summarise(average = mean(stars)) %>%
+    dplyr::mutate(rank = as.factor(rank(-average))) %>%
+    dplyr::filter(style == styles)
+
+  choice <- sample(unique(ranking$style), 1)
+
+  if(styles == choice){
+    paste0("This style ranks", " ", ranking$rank, "th", " ", "among all styles!")
+  }
 }
