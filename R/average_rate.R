@@ -5,7 +5,7 @@
 #' This function generates plots illustrating the proportion of good and bad ramen for each nation.
 #'
 #' @return
-#' A pie chart showing the corresponding percentage of ramen rated as either good or bad.
+#' A pie chart shows the corresponding percentage of ramen rated as either good or bad.
 #'
 #' @param names The country name in which ramen comes from.
 #'
@@ -16,12 +16,8 @@
 get_pct <- function(names) {
   `%>%` <- magrittr::`%>%`
 
-  type <- country <- n <- total <- percentage <- NULL
-
-
-
   plot <- ramen_rating %>%
-    dplyr::filter(stars != "NA") %>%
+    tidyr::drop_na(stars) %>%
     dplyr::mutate(type = dplyr::case_when(
       stars < 3 ~ "Bad",
       stars >= 3 ~ "Good")) %>%
@@ -53,5 +49,39 @@ if(names == choices) {
 #' @examples
 #' get_pct(names = "Australia")
 #' get_pct(names = "Japan")
+
+#' @title Get the average ratings
+#'
+#' @description
+#' This function produces graphs showing averating ratings on each country, across continents
+#'
+#' @return
+#' A interactive boxplot shows the five summary values for each country.
+#'
+#' @param continents The continent in which the country is located.
+#'
+#' @export
+
+
+get_average <- function(continents) {
+  `%>%` <- magrittr::`%>%`
+
+  average <- ramen_rating %>%
+    dplyr::group_by(country) %>%
+    dplyr::filter(continent == continents) %>%
+    ggplot2::ggplot(ggplot2::aes(x = country, y = stars, fill = country)) +
+    ggplot2::geom_boxplot(color = "black",
+                          size = 1,
+                          width = 0.3) +
+    ggplot2::theme(
+      legend.title = ggplot2::element_blank(),
+      axis.title.x = ggplot2::element_blank(),
+      axis.title.y = ggplot2::element_blank()) +
+    ggplot2::ylab("Rating") +
+    ggplot2::coord_flip()
+
+    plotly::ggplotly(average)
+}
+
 
 

@@ -18,7 +18,10 @@ Imports:
     readr,
     magrittr,
     stringr,
-    DT
+    DT,
+    ggplot2,
+    plotly,
+    tidyr
 Suggests: 
     knitr,
     rmarkdown,

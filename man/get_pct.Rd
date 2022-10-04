@@ -10,7 +10,7 @@ get_pct(names)
 \item{names}{The country name in which ramen comes from.}
 }
 \value{
-A pie chart showing the corresponding percentage of ramen rated as either good or bad.
+A pie chart shows the corresponding percentage of ramen rated as either good or bad.
 }
 \description{
 This function generates plots illustrating the proportion of good and bad ramen for each nation.
