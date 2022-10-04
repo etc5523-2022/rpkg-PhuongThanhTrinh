@@ -2,6 +2,7 @@
 # ramenreview
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/etc5523-2022/rpkg-PhuongThanhTrinh/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/etc5523-2022/rpkg-PhuongThanhTrinh/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of ramenreview is to provide information about different varieties of ramen from all over the world.

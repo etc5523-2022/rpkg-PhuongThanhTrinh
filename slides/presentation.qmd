@@ -92,8 +92,7 @@ devtools::install_github("etc5523-2022/rpkg-PhuongThanhTrinh")
 library(ramenreview)
 ```
 
-## Demonstration of the package {auto-animate="true"}
-### `ramen_ratings()` function 
+## `ramen_ratings()` function 
 
 *The dataset has been slightly modified to fit with the purpose of this package, shown as the code below:*
 
@@ -137,8 +136,7 @@ ramen_ratings <- ramen_ratings %>%
 ```{r}
 ramen_ratings()
 ```
-## Demonstration of the package {auto-animate="true"}
-### `five_sum()` function 
+## `five_sum()` function 
 
 *Are you curious how many varieties which brands have?*
 
@@ -148,8 +146,7 @@ To help answer this question, simply add on the ramen name you want to explore, 
 five_sum(brand = "Nissin")
 ```
 
-## Demonstration of the package {auto-animate="true"}
-### `good_bad_ramen()` function 
+## `good_bad_ramen()` function {.scrollable}
 
 *Now that we know number of varieties in each brand, do you also want to know how much percentages a ramen is considered good and bad in the data?*
 
@@ -164,15 +161,16 @@ ggplot(ramen_ratings, aes(x = stars)) +
   labs(x = "Rating", y = "Number of ramen brands") 
 ```
 
-It can be seen that in @fig-ramen, the distribution of ratings is quite left-skewed. This means we are more likely to get better ramen than bad ones. On average, the rating score is `3.7`. Therefore, ramen brands that are rated lower than `3` stars seem to have worse quality compared to the others. Let's find out the rate among different countries with function `good_bad_ramen()`: 
+The distribution of ratings is quite left-skewed. 
+
+* Let's find out the rate among different countries with function `good_bad_ramen()`: 
 
 ```{r}
 good_bad_ramen(country = "Australia")
 ```
 
 
-## Demonstration of the package {auto-animate="true"}
-### `run_app()` function 
+##  `run_app()` function 
 
 A Shiny app has been provided to help users gather information regarding different ramen reviews and how different factors such as styles can change customers' ratings on a particular ramen brand.
 
