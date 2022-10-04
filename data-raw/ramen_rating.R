@@ -10,8 +10,7 @@ oceania <- c("Australia", "New Zealand", "Fiji")
 africa <- c("Nigeria", "Ghana")
 america <- c("Canada", "United States", "Brazil", "Mexico", "Colombia")
 
-read_csv(url) %>%
-  drop_na(stars) %>%
+ramen_rating <- read_csv(url) %>%
   mutate(country = ifelse(country == "Hong Kong", "China", country),
          country = ifelse(country == "Russia", "Russian Federation", country),
          country = ifelse(country == "Holland", "Netherlands", country),
@@ -27,7 +26,6 @@ read_csv(url) %>%
     country %in% europe ~ "Europe",
     country %in% oceania ~ "Oceania",
     country %in% america ~ "America",
-    country %in% africa ~ "Africa")) %>%
-  filter(continent != "NA")
+    country %in% africa ~ "Africa"))
 
 usethis::use_data(ramen_rating, overwrite = TRUE)

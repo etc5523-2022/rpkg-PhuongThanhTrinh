@@ -1,17 +1,17 @@
-#' Get review ratings for different ramen varieties
+#'  @title
+#' Get ramen_rating dataset
 #'
-#' This function gets the ratings for various ramen
+#' @description
+#' This function gets the ramen_rating dataset
 #'
-#' @return A data.frame including 2805 observations and 7 variables.
-#'
-#' @examples
-#' ramen_ratings()
+#' @return
+#' A data frame including 3180 rows and 7 columns.
 #'
 #' @importFrom graphics stars
 #'
 #' @export
 
-ramen_ratings <- function(){
+get_ramen_rating <- function(){
 
   `%>%` <- magrittr::`%>%`
 url <- 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-04/ramen_ratings.csv'
@@ -23,7 +23,6 @@ africa <- c("Nigeria", "Ghana")
 america <- c("Canada", "United States", "Brazil", "Mexico", "Colombia")
 
 readr::read_csv(url) %>%
-  tidyr::drop_na(stars) %>%
   dplyr::mutate(country = ifelse(country == "Hong Kong", "China", country),
          country = ifelse(country == "Russia", "Russian Federation", country),
          country = ifelse(country == "Holland", "Netherlands", country),
@@ -39,6 +38,10 @@ readr::read_csv(url) %>%
     country %in% europe ~ "Europe",
     country %in% oceania ~ "Oceania",
     country %in% america ~ "America",
-    country %in% africa ~ "Africa")) %>%
-  dplyr::filter(continent != "NA")
+    country %in% africa ~ "Africa"))
 }
+#'@usage
+#'Run the below code:
+#'get_ramen_rating()
+#'
+

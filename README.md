@@ -1,11 +1,11 @@
 
 # ramenreview
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/etc5523-2022/rpkg-PhuongThanhTrinh/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/etc5523-2022/rpkg-PhuongThanhTrinh/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
+## Purpose
 
-The goal of ramenreview is to provide information about different varieties of ramen from all over the world.
+The goal of **ramenreview** package is to provide information about different varieties of ramen from all over the world. The package also gives food lovers, especially ramen enthusiasts, some ideas of the best ramen in the world. 
+
+More detailed information about the package can be found [here](https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/).
 
 ## Installation
 
@@ -18,10 +18,15 @@ devtools::install_github("etc5523-2022/rpkg-PhuongThanhTrinh")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Below is a guidline on how to use the **ramenreview** package:
+
+1. Load the library
 
 ``` r
 library(ramenreview)
-## basic example code
+
 ```
+2. Exploring the functions
+
+
 
