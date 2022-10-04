@@ -3,5 +3,8 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   ramen-rating-package: ramen-rating-package.html
-last_built: 2022-10-03T13:46Z
+last_built: 2022-10-04T08:48Z
+urls:
+  reference: ~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference
+  article: ~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/articles
 

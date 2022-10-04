@@ -24,25 +24,24 @@ ramen_ratings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascie
 
 ## Aim of the package
 
-::: {.incremental}
+::: incremental
+-   Provides an overview about the diversity of ramen world
 
-* Provides an overview about the diversity of ramen world
+-   Understands the quality of different ramen brands as well as the popular packaging styles
 
-* Understands the quality of different ramen brands as well as the popular packaging styles
-
-* Helps ramen enthusiasts to decide which ramen is worth to try and which brand they might want to avoid
+-   Helps ramen enthusiasts to decide which ramen is worth to try and which brand they might want to avoid
 :::
 
-## Source 
-:::: {.columns}
+## Source
 
+::: columns
 ::: {.column width="50%"}
-The data used in this package is the `ramen_rating.csv` data set, originated from the [Ramen Rater](https://www.theramenrater.com/resources-2/the-list/). 
-
+The data used in this package is the `ramen_rating.csv` data set, originated from the [Ramen Rater](https://www.theramenrater.com/resources-2/the-list/).
 :::
 
 ::: {.column width="50%"}
-Each record in the data set represents a single ramen review. The dataset contains the following 6 variables: 
+Each record in the data set represents a single ramen review. The dataset contains the following 6 variables:
+
 ```{r}
 tibble(
   "Variable" = c("brand", "variety", "style", "country", "review_number", 
@@ -61,25 +60,24 @@ tibble(
                 bootstrap_options = c("striped", "condensed", "bordered"))
 ```
 :::
-
-::::
-
+:::
 
 ## Demonstration of the package
 
 ### Functions
-::: {.incremental}
 
-* `ramen_ratings()`:allows users to get the **ramen_rating** data set
-
-* `five_sum()`: calculates the total number of ramen varieties available in each ramen brand
-
-* `good_bad_ramen()`:generates plot showing the percentage of good and bad ramen based on countries
-
-* `run_app()`: launches a Shiny App for the dataset
+::: incremental
+* `get_average`	Get the average ratings
+* `get_best_style`	Get highest varieties
+* `get_pct`	Get good and bad ramen from each country
+* `get_ramen_rating`	Get ramen_rating dataset
+* `get_rank`	Rank highest average rate
+* `get_table`	Get ramen_rating dataset in tabular format
+* `run_app`	Get shiny app for ramen rating dataset
 :::
 
 ## Demonstration of the package
+
 ### Get the package
 
 ```{r, eval = FALSE}
@@ -92,7 +90,7 @@ devtools::install_github("etc5523-2022/rpkg-PhuongThanhTrinh")
 library(ramenreview)
 ```
 
-## `ramen_ratings()` function 
+## `ramen_ratings()` function
 
 *The dataset has been slightly modified to fit with the purpose of this package, shown as the code below:*
 
@@ -113,7 +111,6 @@ ramen_ratings <- ramen_ratings %>%
          country = ifelse(country == "Phlippines", "Philippines", country))
 ```
 
-
 ```{r}
 # assign countries to corresponding continents
 asia <- c("Russia", "Thailand", "Japan", "Taiwan", "South Korea", "Hong Kong", "Malaysia", "China", "Philippines", "Vietnam", "Bangladesh", "Singapore", "Indonesia", "India", "Pakistan", "Nepal", "Myanmar", "Cambodia", "Dubai")
@@ -132,17 +129,36 @@ ramen_ratings <- ramen_ratings %>%
     country %in% africa ~ "Africa")) 
 ```
 
-
 ```{r}
 ramen_ratings()
 ```
-## `five_sum()` function 
+
+* `get_ramen_rating()`:	Get ramen_rating dataset
+
+This function will return a tibble including 3180 rows and 6 columns, as shown below:
+``` {r}
+get_ramen_rating()
+```
+
+* `get_table()`:	Get ramen_rating dataset in tabular format
+
+This function will return a tidy formatted table comprising 4 summary statistics for ramen from different countries.
+
+```{r, eval=FALSE}
+get_table()
+```
+
+![](inst/figures/table.png)
+
+
+
+## `get_average` function
 
 *Are you curious how many varieties which brands have?*
 
 To help answer this question, simply add on the ramen name you want to explore, `five_sum()` can provide you with the answer immediately
 
-```{r}
+```{r }
 five_sum(brand = "Nissin")
 ```
 
@@ -150,7 +166,7 @@ five_sum(brand = "Nissin")
 
 *Now that we know number of varieties in each brand, do you also want to know how much percentages a ramen is considered good and bad in the data?*
 
-The histogram below shows the distribution of ramen brands being rated from a 5-score scale. 
+The histogram below shows the distribution of ramen brands being rated from a 5-score scale.
 
 ```{r, message=FALSE, warning=FALSE}
 #| label: fig-ramen
@@ -161,23 +177,22 @@ ggplot(ramen_ratings, aes(x = stars)) +
   labs(x = "Rating", y = "Number of ramen brands") 
 ```
 
-The distribution of ratings is quite left-skewed. 
+The distribution of ratings is quite left-skewed.
 
-* Let's find out the rate among different countries with function `good_bad_ramen()`: 
+-   Let's find out the rate among different countries with function `good_bad_ramen()`:
 
 ```{r}
 good_bad_ramen(country = "Australia")
 ```
 
 
-##  `run_app()` function 
+## `run_app()` function
 
 A Shiny app has been provided to help users gather information regarding different ramen reviews and how different factors such as styles can change customers' ratings on a particular ramen brand.
 
 ```{r, eval= FALSE}
 run_app()
 ```
-
 
 ## Thank you for listening
 

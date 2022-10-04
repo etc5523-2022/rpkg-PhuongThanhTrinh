@@ -1,42 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/ramen-rating-package.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/articles/ramen-rating-package.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/index.html</loc>
   </url>
   <url>
-    <loc>/reference/five_sum.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/five_sum.html</loc>
   </url>
   <url>
-    <loc>/reference/good_bad_ramen.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/get_average.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/get_best_style.html</loc>
   </url>
   <url>
-    <loc>/reference/ramen_rating.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/get_pct.html</loc>
   </url>
   <url>
-    <loc>/reference/ramen_ratings.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/get_ramen_rating.html</loc>
   </url>
   <url>
-    <loc>/reference/run_app.html</loc>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/get_rank.html</loc>
+  </url>
+  <url>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/get_table.html</loc>
+  </url>
+  <url>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/good_bad_ramen.html</loc>
+  </url>
+  <url>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/ramen_rating.html</loc>
+  </url>
+  <url>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/ramen_ratings.html</loc>
+  </url>
+  <url>
+    <loc>~https://etc5523-2022.github.io/rpkg-PhuongThanhTrinh/reference/run_app.html</loc>
   </url>
 </urlset>

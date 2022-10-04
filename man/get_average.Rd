@@ -13,7 +13,7 @@ get_average(continents)
 A interactive boxplot shows the five summary values for each country.
 }
 \description{
-This function produces graphs showing averating ratings on each country, across continents
+This function produces graphs showing averate ratings on each country, across continents
 }
 \examples{
 get_pct(names = "Australia")

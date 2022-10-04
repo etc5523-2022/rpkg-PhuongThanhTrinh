@@ -52,12 +52,14 @@ This dataset provides more than 3,000 reviews on over 400 ramen brands on select
 
 # Inside
 
-There are three functions included in this package:
+There are 7 functions included in this package:
 
-* `ramen_ratings()` function allows users to get the `ramen_rating.csv` data set. The dataset has been slightly modified to fit with the exploratory purpose of the package
-
-* `five_sum()` function calculates the total number of ramen varieties available in each of the ramen brands
-
-* `good_bad_ramen()` function generates a visialization showing the percentage of good and bad rated ramen based on countries
+* `get_average`	Get the average ratings
+* `get_best_style`	Get highest varieties
+* `get_pct`	Get good and bad ramen from each country
+* `get_ramen_rating`	Get ramen_rating dataset
+* `get_rank`	Rank highest average rate
+* `get_table`	Get ramen_rating dataset in tabular format
+* `run_app`	Get shiny app for ramen rating dataset
 
 
