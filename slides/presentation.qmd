@@ -3,12 +3,15 @@ title: "Ramen World"
 subtitle: "Exploring the ramen varieties around the world"
 format:
   revealjs:
+    incremental: true
     slide-number: true
     show-slide-number: print
-    theme: solarized
+    backgroundcolor: "#fee379"
 editor: visual
 author: "By Phuong Thanh Trinh"
 ---
+
+## {background-color="#fee379"- background-image="https://upload.wikimedia.org/wikipedia/commons/f/fc/Kawaii_cat_eating_ramen.jpg"-background-size="1000px"}
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
 library(tidyverse)
@@ -16,6 +19,7 @@ library(ggplot2)
 library(DT)
 library(plotly)
 library(kableExtra)
+library(shiny)
 ```
 
 ```{r, message = FALSE, warning=FALSE}
@@ -63,7 +67,6 @@ tibble(
 :::
 
 ## Demonstration of the package
-
 ### Functions
 
 ::: incremental
@@ -76,25 +79,31 @@ tibble(
 * `run_app`	Get shiny app for ramen rating dataset
 :::
 
-## Demonstration of the package
 
-### Get the package
+## Get the package 
 
-```{r, eval = FALSE}
+::: {.incremental}
+
+```{r, eval=TRUE, echo=TRUE}
 # install.packages("devtools")
 devtools::install_github("etc5523-2022/rpkg-PhuongThanhTrinh")
 ```
 
-```{r}
+. . .
+
+```{r, eval=TRUE, echo=TRUE}
 # load the library
 library(ramenreview)
 ```
 
-## `ramen_ratings()` function
+:::
 
-*The dataset has been slightly modified to fit with the purpose of this package, shown as the code below:*
+## `get_ramen_rating()` function 
 
-```{r}
+The dataset has been slightly modified to fit with the purpose of this package, shown as the code below:
+
+``` {r, eval=TRUE, echo=TRUE}
+
 ramen_ratings <- ramen_ratings %>%
   drop_na(stars) %>%
   
@@ -111,7 +120,12 @@ ramen_ratings <- ramen_ratings %>%
          country = ifelse(country == "Phlippines", "Philippines", country))
 ```
 
-```{r}
+## `get_ramen_rating()` function 
+
+```{r, eval=TRUE, echo=TRUE}
+#| eval: false
+#| code-line-numbers: true
+#| 
 # assign countries to corresponding continents
 asia <- c("Russia", "Thailand", "Japan", "Taiwan", "South Korea", "Hong Kong", "Malaysia", "China", "Philippines", "Vietnam", "Bangladesh", "Singapore", "Indonesia", "India", "Pakistan", "Nepal", "Myanmar", "Cambodia", "Dubai")
 europe <- c("France", "Ukraine", "Netherlands", "Italy", "Poland", "Germany", "Hungary", "United Kingdom", "Finland", "Sweden", "Estonia")
@@ -129,46 +143,34 @@ ramen_ratings <- ramen_ratings %>%
     country %in% africa ~ "Africa")) 
 ```
 
-```{r}
-ramen_ratings()
-```
+## `get_ramen_rating()` function 
 
-* `get_ramen_rating()`:	Get ramen_rating dataset
+* This function will return a tibble including 3180 rows and 6 columns, as shown below:
 
-This function will return a tibble including 3180 rows and 6 columns, as shown below:
 ``` {r}
 get_ramen_rating()
 ```
 
-* `get_table()`:	Get ramen_rating dataset in tabular format
 
-This function will return a tidy formatted table comprising 4 summary statistics for ramen from different countries.
 
-```{r, eval=FALSE}
+# `get_table()` function { .smaller} 
+
+* This function will return a tidy formatted table comprising 4 summary statistics for ramen from different countries.
+
+{.scrollable}
+
+```{r, echo=TRUE}
 get_table()
 ```
 
-![](inst/figures/table.png)
 
+## `get_pct()` function {.scrollable}
 
+*Get the percentage of good and bad ramen in the data?*
 
-## `get_average` function
+* The histogram below shows the distribution of ramen brands being rated from a 5-score scale.
 
-*Are you curious how many varieties which brands have?*
-
-To help answer this question, simply add on the ramen name you want to explore, `five_sum()` can provide you with the answer immediately
-
-```{r }
-five_sum(brand = "Nissin")
-```
-
-## `good_bad_ramen()` function {.scrollable}
-
-*Now that we know number of varieties in each brand, do you also want to know how much percentages a ramen is considered good and bad in the data?*
-
-The histogram below shows the distribution of ramen brands being rated from a 5-score scale.
-
-```{r, message=FALSE, warning=FALSE}
+```{r echo=TRUE}
 #| label: fig-ramen
 #| fig-cap: "Distribution of ratings across brands"
 ggplot(ramen_ratings, aes(x = stars)) +
@@ -179,21 +181,41 @@ ggplot(ramen_ratings, aes(x = stars)) +
 
 The distribution of ratings is quite left-skewed.
 
--   Let's find out the rate among different countries with function `good_bad_ramen()`:
+-   Let's find out the rate among different countries with function `get_pct()`:
 
-```{r}
-good_bad_ramen(country = "Australia")
+```{r, echo=TRUE}
+get_pct(names = "Australia")
 ```
 
+
+## `get_average` function
+
+*Are you curious what is the average rate in which country? The below function can help answer this question:*
+
+```{r, echo=TRUE}
+get_average(continents = "Asia")
+```
+
+## `get_best_style` and `get_rank()` function
+
+* To get the style with highest varieties
+```{r, echo=TRUE}
+get_best_style(styles = "Pack")
+```
+
+* To get the ranking of average rate for each ramen style
+
+```{r, echo=TRUE}
+get_rank(styles = "Bowl")
+```
 
 ## `run_app()` function
 
-A Shiny app has been provided to help users gather information regarding different ramen reviews and how different factors such as styles can change customers' ratings on a particular ramen brand.
+* A Shiny app has been provided to help users gather information regarding different ramen reviews.
 
-```{r, eval= FALSE}
+```{r, eval=FALSE}
 run_app()
 ```
 
-## Thank you for listening
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Thank-new-yellow-transparent.svg/600px-Thank-new-yellow-transparent.svg.png?20200609150708)
+## {background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Thank-new-yellow-transparent.svg/600px-Thank-new-yellow-transparent.svg.png?20200609150708"-background-size="1000px"}
